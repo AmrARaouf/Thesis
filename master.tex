@@ -23,6 +23,7 @@ This is actually the first page of the thesis and will be discarded after the pr
 the title page has to be an even page. The memoir style package used by this template makes different indentations 
 for odd and even pages which is usally done for better readability.  
 \clearpage
+
 %******************************************************************************
 % TITLE PAGE
 %******************************************************************************
@@ -132,12 +133,15 @@ Augsburg, 3.7.2014
 
 \section{Motivation}
 \label{sec:Motivation}
+This thesis was proposed to help measure the engagement of an interviewee in a job interview situation. Through a simple mock interview the interviewee will be assessed on his/her performence. One of the most important attributes of that performence is whether or not s/he is engaged with and attentive to the interviewer. A simple playback of his/her performence coupled with the measurment of his/her engagement level will easily highlight weak spots in the mock interview.
 
 \section{Objectives}
 \label{sec:Objectives}
+This thesis aims to measure the engagement levels of an interviewee through non verbal behaviour of said interview. It studies the conversational interaction with the interviewer, the responses to certain commands, his/her behaviour during certain segments of the interview.
 
 \section{Outline}
 \label{sec:Outline}
+This thesis is divided into three main sections. First it introduces the raw input data that will be used for processing each module of the engagement detection. Then it will explain the main modules used for this thesis in detail. And finally it will explain how the data comes together at the end to produce a level of engagement.
 
 %##########################################################
 \chapter{Theoretical Background}
@@ -155,11 +159,13 @@ Figure \ref{fig:intro} shows an image while you can cite a paper with \cite{Amir
 \label{sec:PseudoCode}
 
 %%##########################################################
-\chapter{Input Data}
-\label{chap:InputData}
+\chapter{Events}
+\label{chap:Events}
+Events are the backbone of the software workings of this thesis. Raw sensor data are converted to events that can be further processed in the software's pipeline. Furthermore external software send event's to ours over a network. These events can be used by themselves as output or can be considered as further inputs to trigger other events.
 
 \section{Sensors}
 \label{sec:Sensors}
+A number of sensors are used to measure the subject's verbal and nonverbal data. They are described here in details
 
 \section{Scenemaker}
 \label{sec:Scenemaker}

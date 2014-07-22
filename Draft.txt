@@ -2,8 +2,11 @@ Thesis
 ======
 Introduction
 -Motivation
+ *Talk about the big picture, ask toby for information*
 -Objectives
+ *engagement detection*
 -Outline
+ *explain how the paper will proceed*
 Inputs
 -Sensors
 -Scenemaker
