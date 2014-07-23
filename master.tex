@@ -147,25 +147,48 @@ This thesis is divided into three main sections. First it introduces the raw inp
 \chapter{Theoretical Background}
 \label{chap:TheoreticalBackground}
 
-\section{Entenhausen}
-\label{sec:Entenhausen}
-Figure \ref{fig:intro} shows an image while you can cite a paper with \cite{AmirPnueli1985} or several papers with \cite{ThomasRist2004, Rist2002}.
-
-
-\section{Section}
+\section{Setup}
 \label{sec:Section}
 
-\subsection{PseudoCode}
-\label{sec:PseudoCode}
+\subsection{Subject}
+The subject of our expirament is the interviewee in our mock interview. The subject is seated aproximately 30 cm from a screen. The subject is asked to adjust to a number of sensors: a Microsoft Kinekt camera, an SMI Eyetracker and a microphone.
+
+\subsection{Agent}
+The agent in our expirament is a reference to the interviewer. The agent is simulated by Scenemaker: a software that is used to create a virtual environment and virtual characters that follow a written script. This script contains sentence utterences, gestures, and commands to wait for a reply from the subject. The main scene used contains two virtual agents named Curtis and Gloria who are standing behind a desk to mimic an office interview. On the left lies a white board that is used as an object in our script.
 
 %%##########################################################
 \chapter{Events}
 \label{chap:Events}
-Events are the backbone of the software workings of this thesis. Raw sensor data are converted to events that can be further processed in the software's pipeline. Furthermore external software send event's to ours over a network. These events can be used by themselves as output or can be considered as further inputs to trigger other events.
+Events are the backbone of the software workings of this thesis. Raw sensor data are converted to events that can be further processed in the software's pipeline. Furthermore external software send events to our own software over a network. These events can be displayed by themselves as output or can be used as inputs to trigger other events.
+
+\section{Event Structure}
+Events are constructs of several attributes:
+Time:
+The clock signature of when the event was triggered.
+Duration:
+The time duration of the event.
+Ptr:
+Meta data about the event.
+Type:
+The type indicates the nature of the meta data wrapped by the event.
 
 \section{Sensors}
 \label{sec:Sensors}
-A number of sensors are used to measure the subject's verbal and nonverbal data. They are described here in details
+
+\subsection{Microsoft Kinekt}
+Kinekt sensors are used to track the skeletal movements of a subject. However in this module we are mainly interested in the movement of the subject's head. Kinekt is used to detect the prepetual displacement of the subject's head which indicates that s/he is nodding. This triggers an event called \textit{HeadNod}. HeadNod is an event measured every 500 ms and its pointer contains a value from 0 to 1 which represents the probability that the subject is nodding his/her head.
+
+\subsection{SMI Eyetracker}
+The SMI Eyetracker is used to pinpoint where the subject is currently looking. Since we are dealing with a virtual agent on a screen we consider the top left corner of the screen as the (0,0) coordinate. Displacement to the right and bottom of the looking point on the screen change the values of the x and y coordinates respectively.
+
+The software defines two main areas on the screen. First is the area of the Agent's face. Second is the area of the board that is present in the environment.
+
+When the subject's looking point falls on the area defined for the agent's face it triggers an event called \textit{SubjectFacialGaze}. SubjectFacialGaze's pointer contains a value of either 0 or 1 indicating whether or not the subject is looking at the agent's face. When the gaze enters the facial area SubjectFacialGaze is triggered with the value 1 indicating that it has started and when the gaze leaves the facial area it is triggered with the value 0 indicating that it is complete.
+
+If the subject's gaze falls in the area of the board the event \textit{SubjectObjectGaze} is triggered. Similar to SubjectFacialGaze, the event carries a value of either 0 or 1 indicating whether or not the subject is looking at the board, value 1 when it starts and value 0 when it ends.
+
+\subsection{Microphone}
+A microphone is used to record the verbal utterances produced by the subject. When the microphone detects a voice the event \textit{vad} (which is short for..) is fired. When the voice is first detected the event's pointer carries a value of 1. When the voice activity ends the same event is triggered but with value 0 to indicate that the event is complete.
 
 \section{Scenemaker}
 \label{sec:Scenemaker}
