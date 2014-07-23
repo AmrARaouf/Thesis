@@ -154,6 +154,7 @@ This thesis is divided into three main sections. First it introduces the raw inp
 The subject of our expirament is the interviewee in our mock interview. The subject is seated aproximately 30 cm from a screen. The subject is asked to adjust to a number of sensors: a Microsoft Kinekt camera, an SMI Eyetracker and a microphone.
 
 \subsection{Agent}
+\label{subsec:Agent}
 The agent in our expirament is a reference to the interviewer. The agent is simulated by Scenemaker: a software that is used to create a virtual environment and virtual characters that follow a written script. This script contains sentence utterences, gestures, and commands to wait for a reply from the subject. The main scene used contains two virtual agents named Curtis and Gloria who are standing behind a desk to mimic an office interview. On the left lies a white board that is used as an object in our script.
 
 %%##########################################################
@@ -192,6 +193,14 @@ A microphone is used to record the verbal utterances produced by the subject. Wh
 
 \section{Scenemaker}
 \label{sec:Scenemaker}
+As mentioned before in [label:agent] Scenemaker is the softawre used to simulate the interview environment and create the virtual agents. Scenemaker is also responsible for sending the events that are triggered by the agents to our software's pipeline. The events can be subcategorized into two main parts: Gaze and speech.
+
+\subsection{Gaze}
+Firstly we are concerned with where the agent is looking. When the script commands the agent to looks at the subject in front of the screen the event \textit{AgentSubjectGaze} is triggered. Similar to the subject's gaze events the event pointer holds the value 1 when the agent starts looking at the subject and holds the value 0 when the agent looks away from the subject's face.
+Furthermore when the agent is commanded to look at the board the event \textit{AgentObjectGaze} is triggered with a pointer value 1 or 0 indicating that the agent has started or stopped looking at the board.
+
+\subsection{Speech}
+The agent utters the sentences that are written in the affiliated script. When the agent starts reading a sentence the event \textit{AgentSpeech} is triggered with a pointer value of 1. When the agent finishes reading that sentence AgentSpeech is triggered witha pointer value of 0.
 
 %%##########################################################
 \chapter{Main Modules}
