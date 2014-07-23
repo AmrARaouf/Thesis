@@ -82,7 +82,7 @@ Bachelor's Thesis\\
 % ABSTRACT
 %******************************************************************************
 \chapter*{Abstract}
-This is the place where the \textit{abstract} of your thesis is supposed to be. The abstract is an essential part of a thesis, providing a brief summary of the thesis. Students often do not recognise the importance of the abstract and thus do not spend the required time in order to produce a well defined abstract. You should realize that the abstract is the walking advertisement for your thesis. Any reader's interest in your work stands or falls with the motivation provided by your abstract. A student should know that usually the reviewer of his or her thesis start reading with the abstract and the summary while often just making quick scans over some parts of the main chapters. An abstract is what will and has to be remembered.
+Interview skills are of utmost important for a person's career and personal image. Furthermore it is an essential matter to exhude conversational engagement in an interview to give the impression of confidence and attentiveness. This thesis aims to track the engagment level of an interviewee in a mock interview situation. It tracks the verbal and nonverbal behaviour of the interviewee with respect to the ongoing context of the interview. The gathered engagement data can be further used to assess the interviewee's performence.
 
 %******************************************************************************
 % STATEMENT & DECLARATION
@@ -141,7 +141,7 @@ This thesis aims to measure the engagement levels of an interviewee through non 
 
 \section{Outline}
 \label{sec:Outline}
-This thesis is divided into three main sections. First it introduces the raw input data that will be used for processing each module of the engagement detection. Then it will explain the main modules used for this thesis in detail. And finally it will explain how the data comes together at the end to produce a level of engagement.
+FEL A5ER
 
 %##########################################################
 \chapter{Theoretical Background}
@@ -151,11 +151,25 @@ This thesis is divided into three main sections. First it introduces the raw inp
 \label{sec:Section}
 
 \subsection{Subject}
-The subject of our expirament is the interviewee in our mock interview. The subject is seated aproximately 30 cm from a screen. The subject is asked to adjust to a number of sensors: a Microsoft Kinekt camera, an SMI Eyetracker and a microphone.
+The subject of our expirament is the interviewee in our mock interview. As shown in figure \ref{fig:setup_img} the subject is seated aproximately 70 cm from a screen. The subject is asked to adjust to a number of sensors: a Microsoft Kinekt camera, an SMI Eyetracker and a microphone.
 
 \subsection{Agent}
 \label{subsec:Agent}
-The agent in our expirament is a reference to the interviewer. The agent is simulated by Scenemaker: a software that is used to create a virtual environment and virtual characters that follow a written script. This script contains sentence utterences, gestures, and commands to wait for a reply from the subject. The main scene used contains two virtual agents named Curtis and Gloria who are standing behind a desk to mimic an office interview. On the left lies a white board that is used as an object in our script.
+The agent in our expirament is a reference to the interviewer. The agent is simulated by Scenemaker: a software that is used to create a virtual environment and virtual characters that follow a written script. This script contains verbal utterences, gestures, and commands to wait for a reply from the subject. The main scene used contains two virtual agents named Curtis and Gloria who are standing behind a desk to mimic an office interview. On the left lies a white board that is used as an object in our script.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{setup}
+    \caption{Interview setup}
+    \label{fig:setup_img}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{agents}
+    \caption{Virtual agents}
+    \label{fig:image_img}
+\end{figure}
 
 %%##########################################################
 \chapter{Events}
@@ -164,14 +178,13 @@ Events are the backbone of the software workings of this thesis. Raw sensor data
 
 \section{Event Structure}
 Events are constructs of several attributes:
-Time:
-The clock signature of when the event was triggered.
-Duration:
-The time duration of the event.
-Ptr:
-Meta data about the event.
-Type:
-The type indicates the nature of the meta data wrapped by the event.
+
+\begin{description}
+  \item[Time] The clock signature of when the event was triggered.
+  \item[Duration] The time duration of the event.
+  \item[Ptr] Meta data about the event.
+  \item[Type] Indicates the nature of the meta data wrapped by the event.
+\end{description}
 
 \section{Sensors}
 \label{sec:Sensors}
@@ -193,7 +206,7 @@ A microphone is used to record the verbal utterances produced by the subject. Wh
 
 \section{Scenemaker}
 \label{sec:Scenemaker}
-As mentioned before in [label:agent] Scenemaker is the softawre used to simulate the interview environment and create the virtual agents. Scenemaker is also responsible for sending the events that are triggered by the agents to our software's pipeline. The events can be subcategorized into two main parts: Gaze and speech.
+As mentioned before in subsection \ref{subsec:Agent} Scenemaker is the softawre used to simulate the interview environment and create the virtual agents. Scenemaker is also responsible for sending the events that are triggered to represent the agents' behaviour to our software's pipeline. The events can be subcategorized into two main parts: Gaze and speech.
 
 \subsection{Gaze}
 Firstly we are concerned with where the agent is looking. When the script commands the agent to looks at the subject in front of the screen the event \textit{AgentSubjectGaze} is triggered. Similar to the subject's gaze events the event pointer holds the value 1 when the agent starts looking at the subject and holds the value 0 when the agent looks away from the subject's face.
@@ -238,8 +251,6 @@ The agent utters the sentences that are written in the affiliated script. When t
 \appendix
 \appendixpage*
 \chapter{First Appendix}
-\label{app:FirstAppendix}
-This is the place where the appendices are supposed to be. Appendices are everything that would just blow up your thesis but are still of some interrest for a reader that wants to get a deeper grasp on the details of your work.
 
 %******************************************************************************
 % BACK MATTER

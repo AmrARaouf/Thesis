@@ -16,14 +16,15 @@
 \contentsline {subsection}{\numberline {3.2.2}SMI Eyetracker}{6}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}Microphone}{6}{subsection.3.2.3}
 \contentsline {section}{\numberline {3.3}Scenemaker}{6}{section.3.3}
-\contentsline {chapter}{\chapternumberline {4}Main Modules}{7}{chapter.4}
-\contentsline {section}{\numberline {4.1}Mutual Facial Gaze}{7}{section.4.1}
-\contentsline {section}{\numberline {4.2}Directed Gaze}{7}{section.4.2}
-\contentsline {section}{\numberline {4.3}Adjacency Pair}{7}{section.4.3}
-\contentsline {section}{\numberline {4.4}Bachchanneling}{7}{section.4.4}
-\contentsline {chapter}{\chapternumberline {5}Bayesian Network}{9}{chapter.5}
-\contentsline {chapter}{\chapternumberline {6}Summery}{11}{chapter.6}
-\contentsline {chapter}{Bibliography}{13}{section*.7}
+\contentsline {subsection}{\numberline {3.3.1}Gaze}{7}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Speech}{7}{subsection.3.3.2}
+\contentsline {chapter}{\chapternumberline {4}Main Modules}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}Mutual Facial Gaze}{9}{section.4.1}
+\contentsline {section}{\numberline {4.2}Directed Gaze}{9}{section.4.2}
+\contentsline {section}{\numberline {4.3}Adjacency Pair}{9}{section.4.3}
+\contentsline {section}{\numberline {4.4}Bachchanneling}{9}{section.4.4}
+\contentsline {chapter}{\chapternumberline {5}Bayesian Network}{11}{chapter.5}
+\contentsline {chapter}{\chapternumberline {6}Summery}{13}{chapter.6}
 \contentsline {appendix}{\chapternumberline {A}First Appendix}{17}{appendix.A}
-\contentsline {chapter}{List of Figures}{19}{section*.8}
-\contentsline {chapter}{List of Tables}{20}{section*.9}
+\contentsline {chapter}{List of Figures}{19}{section*.6}
+\contentsline {chapter}{List of Tables}{20}{section*.7}
