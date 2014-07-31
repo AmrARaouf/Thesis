@@ -49,7 +49,7 @@ Bachelor's Thesis\\
 \begin{center}
 \Large
 \LARGE Engagement Detection\\ \vspace{10pt} 
-\Large Inferring conversational engagement from nonverbal behaviour
+\Large Inferring conversational engagement from verbak and nonverbal behaviour
 \end{center}
 \vspace{2.0em}
 \begin{center}
@@ -82,7 +82,7 @@ Bachelor's Thesis\\
 % ABSTRACT
 %******************************************************************************
 \chapter*{Abstract}
-Interview skills are of utmost important for a person's career and personal image. Furthermore it is an essential matter to exhude conversational engagement in an interview to give the impression of confidence and attentiveness. This thesis aims to track the engagment level of an interviewee in a mock interview situation. It tracks the verbal and nonverbal behaviour of the interviewee with respect to the ongoing context of the interview. The gathered engagement data can be further used to assess the interviewee's performence.
+Interview skills are of utmost important for a person's career and personal image. Furthermore it is an essential matter to exhude conversational engagement in an interview to give the impression of confidence and attentiveness. This thesis aims to track the engagment level of an interviewee in a mock interview situation. It tracks the verbal and nonverbal behaviour of the interviewee with respect to the ongoing context of the interview. The gathered engagement data can be further used to assess the interviewee's performance.
 
 %******************************************************************************
 % STATEMENT & DECLARATION
@@ -133,29 +133,39 @@ Augsburg, 3.7.2014
 
 \section{Motivation}
 \label{sec:Motivation}
-This thesis was proposed to help measure the engagement of an interviewee in a job interview situation. Through a simple mock interview the interviewee will be assessed on his/her performence. One of the most important attributes of that performence is whether or not s/he is engaged with and attentive to the interviewer. A simple playback of his/her performence coupled with the measurment of his/her engagement level will easily highlight weak spots in the mock interview.
+This thesis was proposed to help measure the engagement of an interviewee in a job interview situation. Through a simple mock interview the performance of the interviewee will be assessed. One of the most important attributes of that performance is whether or not the interviwee is engaged with and attentive to the interviewer. A simple playback of the interview coupled with the measurment of the engagement level will easily highlight the ups and downs of his/her demonstration in the mock interview.
 
 \section{Objectives}
 \label{sec:Objectives}
-This thesis aims to measure the engagement levels of an interviewee through non verbal behaviour of said interview. It studies the conversational interaction with the interviewer, the responses to certain commands, his/her behaviour during certain segments of the interview.
+This thesis aims to measure the engagement levels of an interviewee through verbal and non verbal behaviour of said interview. It studies the conversational interaction with the interviewer, the responses to certain commands and behaviour during certain segments of the interview.
 
 \section{Outline}
 \label{sec:Outline}
-FEL A5ER
+This thesis will first discuss the theoretical background and the information gathered on this subject. It will go into the details of the work previously done. Next it will describe the setup of it's mock interview from both the interviewer and the intervieweee's perspectives.
+
+In the following section details of constitution and software workings of this thesis will be covered. First it will describe the general structure of the pipeline. Then it will describe how the inputs are processed from a bottom up approach; starting with raw sensor data and working up level by level to demonstrate how the engagement is calculated.
 
 %##########################################################
 \chapter{Theoretical Background}
 \label{chap:TheoreticalBackground}
 
+\section{Previous Work}
+\label{sec:PreviousWork}
+
+[EXTENSIVE EXPLANATION ABOUT THE PREVIOUSLY READ PAPERS. CONCENTRATE MOST ON THE RICH PAPER]
+
 \section{Setup}
 \label{sec:Section}
 
 \subsection{Subject}
-The subject of our expirament is the interviewee in our mock interview. As shown in figure \ref{fig:setup_img} the subject is seated aproximately 70 cm from a screen. The subject is asked to adjust to a number of sensors: a Microsoft Kinekt camera, an SMI Eyetracker and a microphone.
+\label{subsec:Subject}
+The subject of our experiment is the interviewee in our mock interview. As shown in figure \ref{fig:setup_img} the subject is seated aproximately 70 cm from a screen. A number of sensors are then set up to capture the needed inputs. Namely a Microsoft Kinect, an SMI Eyetracker and a microphone.
 
 \subsection{Agent}
 \label{subsec:Agent}
-The agent in our expirament is a reference to the interviewer. The agent is simulated by Scenemaker: a software that is used to create a virtual environment and virtual characters that follow a written script. This script contains verbal utterences, gestures, and commands to wait for a reply from the subject. The main scene used contains two virtual agents named Curtis and Gloria who are standing behind a desk to mimic an office interview. On the left lies a white board that is used as an object in our script.
+There are two main softwares used to simulate the virtual interview environment. First there is Charamel. Charamel is responsible for creating the interviewers (or agents) and their surrounding environment. The scene used for this thesis consists of two virtual characters, namely Curtis and Gloria. They stand behind a desk to mimic an office interview. On the left lies a white board that is used as an object in our environment. The setting is demonstrated in figure \ref{fig:agents_img}.
+
+The second software used is Scenemaker. Scenemaker is responsible for sending the agents actions to perform. The program consists of a state machine, each state containing a command to be executed by the agents accordingly. These commands include ordering the agents to utter a certain sentence, stop and wait for the subject to reply, perform a certain hand gesture, and so on and so forth.
 
 \begin{figure}[h]
     \centering
@@ -167,8 +177,8 @@ The agent in our expirament is a reference to the interviewer. The agent is simu
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{agents}
-    \caption{Virtual agents}
-    \label{fig:image_img}
+    \caption{Virtual environment}
+    \label{fig:agents_img}
 \end{figure}
 
 %%##########################################################
@@ -182,63 +192,102 @@ Events are constructs of several attributes:
 \begin{description}
   \item[Time] The clock signature of when the event was triggered.
   \item[Duration] The time duration of the event.
-  \item[Ptr] Meta data about the event.
+  \item[Ptr] (Pointer) Meta data about the event.
   \item[Type] Indicates the nature of the meta data wrapped by the event.
+  \item[State] A boolean flag to indicate whether the event is starting or ending.
 \end{description}
+
+In the software's pipeline events are measuerd every time cycle. A cycle of 500 ms is used.
 
 \section{Sensors}
 \label{sec:Sensors}
 
-\subsection{Microsoft Kinekt}
-Kinekt sensors are used to track the skeletal movements of a subject. However in this module we are mainly interested in the movement of the subject's head. Kinekt is used to detect the prepetual displacement of the subject's head which indicates that s/he is nodding. This triggers an event called \textit{HeadNod}. HeadNod is an event measured every 500 ms and its pointer contains a value from 0 to 1 which represents the probability that the subject is nodding his/her head.
+\subsection{Microsoft Kinect}
+[MORE DESCRIPTION]
+
+Kinect sensors are used to track the skeletal movements of a subject. However in this module we are mainly interested in the movement of the subject's head. Kinect is used to detect the prepetual displacement of the subject's head which indicates that s/he is nodding. This triggers an event called \textit{HeadNod}. HeadNod is an event measured and outputed every 500 ms and its pointer contains a value from 0 to 1 which represents the probability that the subject is nodding his/her head.
 
 \subsection{SMI Eyetracker}
-The SMI Eyetracker is used to pinpoint where the subject is currently looking. Since we are dealing with a virtual agent on a screen we consider the top left corner of the screen as the (0,0) coordinate. Displacement to the right and bottom of the looking point on the screen change the values of the x and y coordinates respectively.
+[MORE DESCRIPTION]
 
-The software defines two main areas on the screen. First is the area of the Agent's face. Second is the area of the board that is present in the environment.
+The SMI Eyetracker is used to pinpoint where the subject is currently looking. Since we are dealing with a virtual agent on a screen we consider the top left corner of the screen as the (0,0) coordinate. Displacement of the subject's gaze point to the right alters the x coordinate and to the bottom affects the y coordinate.
 
-When the subject's looking point falls on the area defined for the agent's face it triggers an event called \textit{SubjectFacialGaze}. SubjectFacialGaze's pointer contains a value of either 0 or 1 indicating whether or not the subject is looking at the agent's face. When the gaze enters the facial area SubjectFacialGaze is triggered with the value 1 indicating that it has started and when the gaze leaves the facial area it is triggered with the value 0 indicating that it is complete.
+The software defines two main rectangular areas on the screen. First is the area of the Agent's face. Second is the area of the board that is present in the environment.
 
-If the subject's gaze falls in the area of the board the event \textit{SubjectObjectGaze} is triggered. Similar to SubjectFacialGaze, the event carries a value of either 0 or 1 indicating whether or not the subject is looking at the board, value 1 when it starts and value 0 when it ends.
+When the subject's gaze point falls on the area defined for the agent's face it triggers an event called \textit{SubjectFacialGaze}. SubjectFacialGaze's pointer contains a value of either 0 or 1 indicating whether or not the subject is looking at the agent's face. When the gaze enters the facial area SubjectFacialGaze is triggered with the value 1 indicating that it has started and when the gaze leaves the facial area it is triggered with the value 0 indicating that it is complete.
+
+If the subject's gaze falls in the area of the board the event \textit{SubjectObjectGaze} is triggered. Similar to SubjectFacialGaze, the event carries a value of either 0 or 1 indicating whether or not the subject is looking at the board. The event is prompted with pointer value 1 when the subject starts looking at the object, and triggered again with 0 when the subject directs his/her gaze away.
 
 \subsection{Microphone}
-A microphone is used to record the verbal utterances produced by the subject. When the microphone detects a voice the event \textit{vad} (which is short for..) is fired. When the voice is first detected the event's pointer carries a value of 1. When the voice activity ends the same event is triggered but with value 0 to indicate that the event is complete.
+A microphone is used to record the verbal utterances produced by the subject. When the microphone detects a voice the event \textit{vad} (which is short for Voice Activity Duration) is fired. When the voice is first detected the event's pointer carries a value of 1. When the voice activity ends the same event is triggered but with value 0 to indicate that the event is complete.
 
 \section{Scenemaker}
 \label{sec:Scenemaker}
-As mentioned before in subsection \ref{subsec:Agent} Scenemaker is the softawre used to simulate the interview environment and create the virtual agents. Scenemaker is also responsible for sending the events that are triggered to represent the agents' behaviour to our software's pipeline. The events can be subcategorized into two main parts: Gaze and speech.
+As mentioned before in subsection \ref{subsec:Agent} Scenemaker is the software used to send commands to the virtual agents. Scenemaker is also responsible for sending the events that are triggered to represent the agents' behaviour to our software's pipeline. The events can be subcategorized into two main parts: Gaze and speech.
 
 \subsection{Gaze}
-Firstly we are concerned with where the agent is looking. When the script commands the agent to looks at the subject in front of the screen the event \textit{AgentSubjectGaze} is triggered. Similar to the subject's gaze events the event pointer holds the value 1 when the agent starts looking at the subject and holds the value 0 when the agent looks away from the subject's face.
-Furthermore when the agent is commanded to look at the board the event \textit{AgentObjectGaze} is triggered with a pointer value 1 or 0 indicating that the agent has started or stopped looking at the board.
+Firstly we are concerned with where the agent is looking. When the script commands the agent to looks at the subject in front of the screen the event \textit{AgentFacialGaze} is triggered. Similar to the subject's gaze events the event pointer holds the value 1 when the agent starts looking at the subject and holds the value 0 when the agent looks away from the subject's face.
+
+Furthermore when the agent is commanded to look at the board, the event \textit{AgentObjectGaze} is triggered with a pointer value 1 or 0 indicating that the agent has started or stopped looking at the board.
 
 \subsection{Speech}
-The agent utters the sentences that are written in the affiliated script. When the agent starts reading a sentence the event \textit{AgentSpeech} is triggered with a pointer value of 1. When the agent finishes reading that sentence AgentSpeech is triggered witha pointer value of 0.
+The agent utters the sentences that are written in the affiliated script. When the agent starts reading a sentence the event \textit{AgentSpeech} is triggered with a pointer value of 1. When the agent finishes reading that sentence AgentSpeech is triggered with a pointer value of 0.
 
 %%##########################################################
 \chapter{Main Modules}
 \label{chap:MainModules}
+So to review our events, we have:
+
+\begin{itemize}
+  \item HeadNod
+  \item SubjectFacialGaze
+  \item SubjectObjectGaze
+  \item vad
+  \item AgentFacialGaze
+  \item AgentObjectGaze
+  \item AgentSpeech
+\end{itemize}
+
+Those events will be used as inputs for our four main modules.
 
 \section{Mutual Facial Gaze}
 \label{sec:MutualFacialGaze}
+Mutual Facial Gaze is defined as the eye contact between the subject and the agent. It is necessary for the subject to direct his/her gaze at the agent's face when being addressed. The event \textit{MutualFacialGaze} is triggered with a pointer value 1 (indicating that it started) when both SubjectFacialGaze and AgentFacialGaze are ongoing. When either of the two input events are triggered with the value 0 (event ends) the event MutualFacialGaze is also ends and therefore is triggered with pointer value 0.
 
 \section{Directed Gaze}
 \label{sec:DirectedGaze}
+Directed Gaze occurs when the agent points or looks at a certain object and then the subject follows. In our environment the white board acts as the object. The event \textit{DirectedGaze} is triggered with pointer value 1 when both SubjectObjectGaze and AgentObjectGaze are ongoing. And triggered again with pointer value 0 when one of the two input events ends.
 
 \section{Adjacency Pair}
 \label{sec:AdjacencyPair}
+Adjacency Pairs are usually defined as a speech utterance which is provoked by a previous speech utterance. For instance the answer to a question is an adjacency pair. This thesis did not go into the the semantics of natural language processing. The inputs where when the agent started and stopped speaking, and when the subject started and stopped speaking. Naturally we redefined the meaning of adjacency pairs to match our inputs.
 
-\section{Bachchanneling}
-\label{sec:Bachchanneling}
+This thesis defines adjacency pairs as a verbal statement uttered by the subject within a window of two seconds after the agent has finished speaking. It is assumed that any statement spoken by the subject shortly after the agent finishes is provoked by the agent's previous sentence. The \textit{AdjacencyPair} start event is fired when a vad start event is detected within 2 seconds of an AgentSpeech end event. An AdjacencyPair end event is prompted as soon as said vad event ends.
+
+\section{Backchanneling}
+\label{sec:Backchanneling}
+Backchanneling is the small responses given by the subject during the time where the agent is speaking. These responses indicate that the subject is following what the agent is saying. [CHECK HOW THE RICH PAPER DESCRIBES IT]
+
+Here we introduce the concept of a \textit{Backchanneling Pulse}. Since backchanneling has a very short duration that usually lasts only one event cycle which is not enough time to influence the bayesian network. So instead when a backchanneling event is provoked it is outputed on 5 consecutive event cycles with pointer value 1, 0.75, 0.5, 0.25 and 0 respectively, as shown in figure \ref{fig:bcp_img}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{bcp}
+    \caption{Backchanneling event triggered at T+2}
+    \label{fig:bcp_img}
+\end{figure}
+
+A BCPulse can be triggered by two different ways. It can be prompted when a HeadNod is detected during AgentSpeech. Or it can be set off when a vad event with a duration less than 2 seconds is detected during an AgentSpeech.
 
 %%##########################################################
 \chapter{Bayesian Network}
 \label{chap:BayesianNetwork}
+[ASK TOBY ABOUT HOW MUCH YOU CAN WRITE ABOUT THE BAYESIAN NETWORK. MINIMALLY JUST TALK ABOUT HOW THE ENGAGEMENT IS CALCULATED FEL AER]
 
 %%##########################################################
-\chapter{Summery}
-\label{Summery}
-
+\chapter{Summary}
+\label{Summary}
+[EXPLAIN THE GENERAL STRUCTURE AGAIN IN MORE DETAIL THIS TIME. ADD IMAGE SHOWING YOUR SO CALLED BOTTOM UP APPROACH]
 %******************************************************************************
 % BIBLIOGRAPHY
 %******************************************************************************
@@ -248,9 +297,9 @@ The agent utters the sentences that are written in the affiliated script. When t
 %******************************************************************************
 % APPENDIX
 %******************************************************************************
-\appendix
-\appendixpage*
-\chapter{First Appendix}
+%\appendix
+%\appendixpage*
+%\chapter{First Appendix}
 
 %******************************************************************************
 % BACK MATTER
