@@ -36,7 +36,7 @@ Faculty of Applied Computer Science\\
 Department of Computer Science\\
 Bachelor's Program in Computer Science\\
 \end{center}
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=0.25\textwidth]{logo.png}
 \end{figure}
@@ -49,7 +49,7 @@ Bachelor's Thesis\\
 \begin{center}
 \Large
 \LARGE Engagement Detection\\ \vspace{10pt} 
-\Large Inferring conversational engagement from verbak and nonverbal behaviour
+\Large Inferring conversational engagement from verbal and nonverbal behaviour
 \end{center}
 \vspace{2.0em}
 \begin{center}
@@ -152,7 +152,17 @@ In the following section details of constitution and software workings of this t
 \section{Previous Work}
 \label{sec:PreviousWork}
 
-[EXTENSIVE EXPLANATION ABOUT THE PREVIOUSLY READ PAPERS. CONCENTRATE MOST ON THE RICH PAPER]
+\subsection{Recognizing Engagement in Human Robot Interaction}
+In \cite{rich} Rich et al. studied the engagement behaviour in a conversation between a human and a humanoid robot. Their target was to build a robot architecture that would allow the robot to mimic the conversational behaviour of a human. The attributes of the measured engagement were divided into 4 main parts:
+
+\begin{description}
+  \item[Mutual Facial Gaze] Ability of both parties to maintain eye contact.
+  \item[Directed Gaze] Ability of one party to follow the gaze of the other when the other party points or gazes at a certain object in the environment.
+  \item[Adjacency Pair] The ability of one party to reply sensibly to the other party's speech.
+  \item[Backchanneling] During the speech of one party, the other communicates a small gesture to indicate attentiveness.
+\end{description}
+
+You will find that this thesis is heavily influenced by Rich et al.'s work, with a slight modification to the definition of the four main modules.
 
 \section{Setup}
 \label{sec:Section}
@@ -165,16 +175,16 @@ The subject of our experiment is the interviewee in our mock interview. As shown
 \label{subsec:Agent}
 There are two main softwares used to simulate the virtual interview environment. First there is Charamel. Charamel is responsible for creating the interviewers (or agents) and their surrounding environment. The scene used for this thesis consists of two virtual characters, namely Curtis and Gloria. They stand behind a desk to mimic an office interview. On the left lies a white board that is used as an object in our environment. The setting is demonstrated in figure \ref{fig:agents_img}.
 
-The second software used is Scenemaker. Scenemaker is responsible for sending the agents actions to perform. The program consists of a state machine, each state containing a command to be executed by the agents accordingly. These commands include ordering the agents to utter a certain sentence, stop and wait for the subject to reply, perform a certain hand gesture, and so on and so forth.
+The second software used is Scenemaker. Scenemaker is responsible for sending the agents actions to perform. The program consists of a state machine, each state containing a command to be executed by the agents accordingly. These commands include ordering the agents to utter a certain sentence, stop and wait for the subject to reply, perform a certain hand gesture, and so on and so forth. Scenmaker also contains a script that defines dialogues to be acted out by the agents. The agents follow the dialogue when it is referenced in one of the state machines.
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{setup}
     \caption{Interview setup}
     \label{fig:setup_img}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{agents}
     \caption{Virtual environment}
@@ -203,14 +213,16 @@ In the software's pipeline events are measuerd every time cycle. A cycle of 500 
 \label{sec:Sensors}
 
 \subsection{Microsoft Kinect}
-[MORE DESCRIPTION]
+Kinect is a device made by Microsoft to sense 3D movements. It uses a number of cameras to detect a 3D environment; A normal VGA camera and an infrared camera that is used to measure and create a depth map.
 
-Kinect sensors are used to track the skeletal movements of a subject. However in this module we are mainly interested in the movement of the subject's head. Kinect is used to detect the prepetual displacement of the subject's head which indicates that s/he is nodding. This triggers an event called \textit{HeadNod}. HeadNod is an event measured and outputed every 500 ms and its pointer contains a value from 0 to 1 which represents the probability that the subject is nodding his/her head.
+Kinect can also track the skeletal movements of a person standing in its range. It measures the joint orientation and sends the data to the api. Kinect detects the skeletal movements of a user in two main stages. First it uses the infrared camera to create a depth map. Secondly the machine learning is used to decide whether or not the image in the depth map represents a skeleton.
+
+In our software we are mostly interested in the movement of the subject's head. Kinect is used to detect the prepetual displacement of the subject's head which indicates that s/he is nodding. This triggers an event called \textit{HeadNod}. HeadNod is an event measured and outputed every 500 ms and its pointer contains a value from 0 to 1 which represents the probability that the subject is nodding.
 
 \subsection{SMI Eyetracker}
-[MORE DESCRIPTION]
+The SMI Eyetracker is a plug-and-play hardware that is used to pinpoint where the user is looking. It is placed below th screen approximately 65-70 cm away from the user. After calibrating the user position with an eye tracking test a stream of x and y coordinates is sent via the SMI API to our software's pipeline. Since the machine used in this thesis runs an 64 bit operating system (which is incompatible with the SMI software), we connect the eye tracker to a separate machine. We then receive the stream via the LAN network.
 
-The SMI Eyetracker is used to pinpoint where the subject is currently looking. Since we are dealing with a virtual agent on a screen we consider the top left corner of the screen as the (0,0) coordinate. Displacement of the subject's gaze point to the right alters the x coordinate and to the bottom affects the y coordinate.
+Since we are dealing with a virtual agent on a screen we consider the top left corner of the screen as the (0,0) coordinate. Displacement of the subject's gaze point to the right alters the x coordinate and to the bottom affects the y coordinate.
 
 The software defines two main rectangular areas on the screen. First is the area of the Agent's face. Second is the area of the board that is present in the environment.
 
@@ -220,6 +232,8 @@ If the subject's gaze falls in the area of the board the event \textit{SubjectOb
 
 \subsection{Microphone}
 A microphone is used to record the verbal utterances produced by the subject. When the microphone detects a voice the event \textit{vad} (which is short for Voice Activity Duration) is fired. When the voice is first detected the event's pointer carries a value of 1. When the voice activity ends the same event is triggered but with value 0 to indicate that the event is complete.
+
+In our expariment we used a microphone mounted on a head gear to eliminate noise produced by the agents' speech utterences.
 
 \section{Scenemaker}
 \label{sec:Scenemaker}
@@ -231,7 +245,7 @@ Firstly we are concerned with where the agent is looking. When the script comman
 Furthermore when the agent is commanded to look at the board, the event \textit{AgentObjectGaze} is triggered with a pointer value 1 or 0 indicating that the agent has started or stopped looking at the board.
 
 \subsection{Speech}
-The agent utters the sentences that are written in the affiliated script. When the agent starts reading a sentence the event \textit{AgentSpeech} is triggered with a pointer value of 1. When the agent finishes reading that sentence AgentSpeech is triggered with a pointer value of 0.
+As mentioned in \ref{subsec:Agent} it was mentioned that Scenemaker contains a script. A script contains a number of dialogues and each dialogue is split into a number of sentences. When the agent starts reading a sentence the event \textit{AgentSpeech} is triggered with a pointer value of 1. When the agent finishes reading that sentence AgentSpeech is triggered with a pointer value of 0.
 
 %%##########################################################
 \chapter{Main Modules}
@@ -254,15 +268,23 @@ Those events will be used as inputs for our four main modules.
 \label{sec:MutualFacialGaze}
 Mutual Facial Gaze is defined as the eye contact between the subject and the agent. It is necessary for the subject to direct his/her gaze at the agent's face when being addressed. The event \textit{MutualFacialGaze} is triggered with a pointer value 1 (indicating that it started) when both SubjectFacialGaze and AgentFacialGaze are ongoing. When either of the two input events are triggered with the value 0 (event ends) the event MutualFacialGaze is also ends and therefore is triggered with pointer value 0.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{MFG}
+    \caption{Mutual Facial Gaze}
+    \label{fig:MFG_img}
+\end{figure}
+
 \section{Directed Gaze}
 \label{sec:DirectedGaze}
-Directed Gaze occurs when the agent points or looks at a certain object and then the subject follows. In our environment the white board acts as the object. The event \textit{DirectedGaze} is triggered with pointer value 1 when both SubjectObjectGaze and AgentObjectGaze are ongoing. And triggered again with pointer value 0 when one of the two input events ends.
+Directed Gaze occurs when the agent points or looks at a certain object and then the subject follows as shown in figure \ref{fig:DG_img}. In our environment the white board acts as the object. The event \textit{DirectedGaze} is triggered with pointer value 1 when both SubjectObjectGaze and AgentObjectGaze are ongoing. And triggered again with pointer value 0 when one of the two input events ends.
 
-\section{Adjacency Pair}
-\label{sec:AdjacencyPair}
-Adjacency Pairs are usually defined as a speech utterance which is provoked by a previous speech utterance. For instance the answer to a question is an adjacency pair. This thesis did not go into the the semantics of natural language processing. The inputs where when the agent started and stopped speaking, and when the subject started and stopped speaking. Naturally we redefined the meaning of adjacency pairs to match our inputs.
-
-This thesis defines adjacency pairs as a verbal statement uttered by the subject within a window of two seconds after the agent has finished speaking. It is assumed that any statement spoken by the subject shortly after the agent finishes is provoked by the agent's previous sentence. The \textit{AdjacencyPair} start event is fired when a vad start event is detected within 2 seconds of an AgentSpeech end event. An AdjacencyPair end event is prompted as soon as said vad event ends.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{DG}
+    \caption{Agent points to object while subject is looking at it}
+    \label{fig:DG_img}
+\end{figure}
 
 \section{Backchanneling}
 \label{sec:Backchanneling}
@@ -270,7 +292,7 @@ Backchanneling is the small responses given by the subject during the time where
 
 Here we introduce the concept of a \textit{Backchanneling Pulse}. Since backchanneling has a very short duration that usually lasts only one event cycle which is not enough time to influence the bayesian network. So instead when a backchanneling event is provoked it is outputed on 5 consecutive event cycles with pointer value 1, 0.75, 0.5, 0.25 and 0 respectively, as shown in figure \ref{fig:bcp_img}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{bcp}
     \caption{Backchanneling event triggered at T+2}
@@ -278,6 +300,26 @@ Here we introduce the concept of a \textit{Backchanneling Pulse}. Since backchan
 \end{figure}
 
 A BCPulse can be triggered by two different ways. It can be prompted when a HeadNod is detected during AgentSpeech. Or it can be set off when a vad event with a duration less than 2 seconds is detected during an AgentSpeech.
+
+\section{Adjacency Pair}
+\label{sec:AdjacencyPair}
+Adjacency Pairs are defined as a speech utterance which is provoked by a previous speech utterance. For instance the answer to a question is an adjacency pair. This thesis did not go into the the semantics of natural language processing. The inputs where when the agent started and stopped speaking, and when the subject started and stopped speaking. Naturally we redefined the meaning of adjacency pairs to match our inputs.
+
+This thesis defines adjacency pairs as one of two conversational situations:
+
+\begin{itemize}
+  \item If the subject starts speaking within a two second time window after the agent has finished its sentence it is considered an adjacency pair and a \textit{AdjacencyPair} start event is initiated. This is demonstrated in the second line in figure \ref{fig:AdjPair_img}.
+  \item An AdjacencyPair start event is triggered the subject starts speaking right before the agent finished speaking as dipicted in the second line of figure \ref{fig:AdjPair_img}. This is to mostly account for the delay in the pipeline between the triggering of the AgentSpeech end event and the vad start event.
+\end{itemize}
+
+AdjacencyPair end events are triggered when the vad event associated with the AdjacencyPair event ends.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{AP}
+    \caption{Adjacency Pair}
+    \label{fig:AdjPair_img}
+\end{figure}
 
 %%##########################################################
 \chapter{Bayesian Network}
@@ -291,8 +333,8 @@ A BCPulse can be triggered by two different ways. It can be prompted when a Head
 %******************************************************************************
 % BIBLIOGRAPHY
 %******************************************************************************
+\bibliography{master}
 \bibliographystyle{plain}
-{\small\bibliography{master}}
 
 %******************************************************************************
 % APPENDIX
@@ -337,20 +379,6 @@ A BCPulse can be triggered by two different ways. It can be prompted when a Head
 \normalfont
 \clearpage
 \listoffigures
-
-%******************************************************************************
-% LIST OF TABLES
-%******************************************************************************
-\normalfont
-\clearpage
-\listoftables
-
-%******************************************************************************
-% LIST OF ALGORITHMS
-%******************************************************************************
-%\normalfont
-\clearpage
-\listofalgorithms
 
 %******************************************************************************
 % END DOCUMENT

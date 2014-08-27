@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.3)  31 JUL 2014 22:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.3)  10 AUG 2014 16:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1013,7 +1013,7 @@ LaTeX Info: Redefining \nameref on input line 11.
  [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] <logo.png, id=122, 602.25p
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] <logo.png, id=126, 602.25p
 t x 591.20876pt>
 File: logo.png Graphic file (type png)
  <use logo.png>
@@ -1046,7 +1046,7 @@ LaTeX Font Info:    Try loading font information for U+stmry on input line 3.
 duplicate ignored
 <to be read again> 
                    \relax 
-l.28 ...apternumberline {6}Summary}{15}{chapter.6}
+l.29 ...apternumberline {6}Summary}{17}{chapter.6}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -1058,54 +1058,73 @@ l.129
 
 ] [2] [3
 
-] <setup.jpg, id=204, 393.1488pt x 221.1462pt>
+] <setup.jpg, id=209, 393.1488pt x 221.1462pt>
 File: setup.jpg Graphic file (type jpg)
 
 <use setup.jpg>
-Package pdftex.def Info: setup.jpg used on input line 172.
+Package pdftex.def Info: setup.jpg used on input line 182.
 (pdftex.def)             Requested size: 383.0pt x 215.44963pt.
- <agents.png, id=205, 1444.64719pt x 783.67781pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<agents.png, id=210, 1444.64719pt x 783.67781pt>
 File: agents.png Graphic file (type png)
-
-<use agents.png>
-Package pdftex.def Info: agents.png used on input line 179.
+ <use agents.png>
+Package pdftex.def Info: agents.png used on input line 189.
 (pdftex.def)             Requested size: 383.0pt x 207.75732pt.
- [4 <./setup.jpg> <./agents.png>] [5
 
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6]
-[7] [8
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-] [9]
-Overfull \hbox (7.70187pt too wide) in paragraph at lines 271--272
+[4] [5 <./setup.jpg> <./agents.png>] [6
+
+] [7] [8] [9] [10]
+<MFG.png, id=245, 450.18187pt x 278.54062pt>
+File: MFG.png Graphic file (type png)
+ <use MFG.png>
+Package pdftex.def Info: MFG.png used on input line 273.
+(pdftex.def)             Requested size: 229.80234pt x 142.18558pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[11
+
+] <DG.png, id=253, 450.18187pt x 278.54062pt>
+File: DG.png Graphic file (type png)
+ <use DG.png>
+Package pdftex.def Info: DG.png used on input line 284.
+(pdftex.def)             Requested size: 229.80234pt x 142.18558pt.
+ [12 <./MFG.png> <./DG.png>]
+Overfull \hbox (7.70187pt too wide) in paragraph at lines 293--294
 []\OT1/cmr/m/n/12 Here we in-tro-duce the con-cept of a \OT1/cmr/m/it/12 Backch
 an-nel-ing Pulse\OT1/cmr/m/n/12 . Since backchan-
  []
 
-<bcp.png, id=235, 791.95876pt x 455.7025pt>
+<bcp.png, id=261, 791.95876pt x 455.7025pt>
 File: bcp.png Graphic file (type png)
  <use bcp.png>
-Package pdftex.def Info: bcp.png used on input line 275.
+Package pdftex.def Info: bcp.png used on input line 297.
 (pdftex.def)             Requested size: 383.0pt x 220.38268pt.
+ [13 <./bcp.png>]
+<AP.png, id=271, 481.8pt x 203.76125pt>
+File: AP.png Graphic file (type png)
+ <use AP.png>
+Package pdftex.def Info: AP.png used on input line 319.
+(pdftex.def)             Requested size: 383.0pt x 161.98009pt.
+ [14 <./AP.png>] [15
 
+]
+[16
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+] (./master.bbl [17] [18
 
-[10] [11 <./bcp.png>] [12
+]
+bibitemlist
+) [19] [20
 
-] [13] [14
-
-] (./master.bbl) [15] [16
-
-] (./master.lof)
-[17
-
-] (./master.lot) [18
-
-] (./master.loa) [19
-
+] (./master.lof) [21
 
 ]
 \tf@toc=\write8
@@ -1114,41 +1133,35 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 \tf@lof=\write9
 \openout9 = `master.lof'.
 
-\tf@lot=\write10
-\openout10 = `master.lot'.
-
-\tf@loa=\write11
-\openout11 = `master.loa'.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 358.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 358.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 386.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 386.
  (./master.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 358.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 358.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 386.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 386.
 Package rerunfilecheck Info: File `master.out' has not changed.
-(rerunfilecheck)             Checksum: 845C77535B72C539D28A6B0A5E291528;3664.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 358.
+(rerunfilecheck)             Checksum: C1AE7F3763F0B5532022078DFAE02837;4003.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 386.
  ) 
 Here is how much of TeX's memory you used:
- 17651 strings out of 493304
- 243358 string characters out of 6139872
- 329700 words of memory out of 5000000
- 20811 multiletter control sequences out of 15000+600000
- 19547 words of font info for 68 fonts, out of 8000000 for 9000
+ 17674 strings out of 493304
+ 243614 string characters out of 6139872
+ 331006 words of memory out of 5000000
+ 20829 multiletter control sequences out of 15000+600000
+ 19846 words of font info for 69 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,12n,32p,544b,365s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,32p,574b,365s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmti12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm120
-0.pfb>
-Output written on master.pdf (27 pages, 4570832 bytes).
+type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmti12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on master.pdf (29 pages, 4619902 bytes).
 PDF statistics:
- 327 PDF objects out of 1000 (max. 8388607)
- 282 compressed objects within 3 object streams
- 62 named destinations out of 1000 (max. 500000)
- 245 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 362 PDF objects out of 1000 (max. 8388607)
+ 309 compressed objects within 4 object streams
+ 69 named destinations out of 1000 (max. 500000)
+ 268 words of extra memory for PDF output out of 10000 (max. 10000000)
 
