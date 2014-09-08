@@ -1,12 +1,16 @@
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Interview setup}}{5}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Virtual environment}}{5}{figure.2.2}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Interview setup}}{6}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Virtual environment}}{6}{figure.3.2}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Mutual Facial Gaze}}{12}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Agent points to object while subject is looking at it}}{12}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Backchanneling event triggered at T+2}}{13}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Adjacency Pair}}{14}{figure.4.4}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Mutual Facial Gaze}}{12}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Agent points to object while subject is looking at it}}{12}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Backchanneling event triggered at T+2}}{13}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Adjacency Pair}}{14}{figure.5.4}
 \addvspace {10pt}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Bayesian network start state}}{16}{figure.6.1}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Probability table of Backchanneling node}}{17}{figure.6.2}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Instance of bayesian network}}{17}{figure.6.3}
 \addvspace {10pt}

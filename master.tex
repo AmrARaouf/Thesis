@@ -164,15 +164,23 @@ In \cite{rich} Rich et al. studied the engagement behaviour in a conversation be
 
 You will find that this thesis is heavily influenced by Rich et al.'s work, with a slight modification to the definition of the four main modules.
 
-\section{Setup}
-\label{sec:Section}
+\subsection{Engagement Rules for Human-Robot Collaborative Interactions}
+Like the previously mentioned paper, Sidner et al. \cite{sidner} worked on a robot that is to mimic human social behaviour.
 
-\subsection{Subject}
-\label{subsec:Subject}
+The paper builds the human-robot interaction on three main pillars. Namely initiating, maintaining and terminating engagement behaviour during a conversation, understanding the speech utterence and replying accordingly, and finally the ability to take a decision and point the conversation into a certain direction.
+
+The paper uses a set of rules to allow the robot to understand both how to engage and how to recognize engagement. The robot uses facial gaze and greeting utterences to indicate the start of a conversation. It maintains its gaze with the human conversation participant as long as the participant is speaking. To detect that the human participant wishes to disengage from the conversation the robot monitors the interlocuter's gaze; if it is set away from the robot then the desire to disengage is detected. And lastly when the robot runs out of things to say and wishes to disengage itself, it closes the conversation using a set of rules for conversation closing.
+
+%%##########################################################
+\chapter{Setup}
+\label{chap:Section}
+
+\section{Subject}
+\label{sec:Subject}
 The subject of our experiment is the interviewee in our mock interview. As shown in figure \ref{fig:setup_img} the subject is seated aproximately 70 cm from a screen. A number of sensors are then set up to capture the needed inputs. Namely a Microsoft Kinect, an SMI Eyetracker and a microphone.
 
-\subsection{Agent}
-\label{subsec:Agent}
+\section{Agent}
+\label{sec:Agent}
 There are two main softwares used to simulate the virtual interview environment. First there is Charamel. Charamel is responsible for creating the interviewers (or agents) and their surrounding environment. The scene used for this thesis consists of two virtual characters, namely Curtis and Gloria. They stand behind a desk to mimic an office interview. On the left lies a white board that is used as an object in our environment. The setting is demonstrated in figure \ref{fig:agents_img}.
 
 The second software used is Scenemaker. Scenemaker is responsible for sending the agents actions to perform. The program consists of a state machine, each state containing a command to be executed by the agents accordingly. These commands include ordering the agents to utter a certain sentence, stop and wait for the subject to reply, perform a certain hand gesture, and so on and so forth. Scenmaker also contains a script that defines dialogues to be acted out by the agents. The agents follow the dialogue when it is referenced in one of the state machines.
@@ -237,7 +245,7 @@ In our expariment we used a microphone mounted on a head gear to eliminate noise
 
 \section{Scenemaker}
 \label{sec:Scenemaker}
-As mentioned before in subsection \ref{subsec:Agent} Scenemaker is the software used to send commands to the virtual agents. Scenemaker is also responsible for sending the events that are triggered to represent the agents' behaviour to our software's pipeline. The events can be subcategorized into two main parts: Gaze and speech.
+As mentioned before in subsection \ref{sec:Agent} Scenemaker is the software used to send commands to the virtual agents. Scenemaker is also responsible for sending the events that are triggered to represent the agents' behaviour to our software's pipeline. The events can be subcategorized into two main parts: Gaze and speech.
 
 \subsection{Gaze}
 Firstly we are concerned with where the agent is looking. When the script commands the agent to looks at the subject in front of the screen the event \textit{AgentFacialGaze} is triggered. Similar to the subject's gaze events the event pointer holds the value 1 when the agent starts looking at the subject and holds the value 0 when the agent looks away from the subject's face.
@@ -245,7 +253,7 @@ Firstly we are concerned with where the agent is looking. When the script comman
 Furthermore when the agent is commanded to look at the board, the event \textit{AgentObjectGaze} is triggered with a pointer value 1 or 0 indicating that the agent has started or stopped looking at the board.
 
 \subsection{Speech}
-As mentioned in \ref{subsec:Agent} it was mentioned that Scenemaker contains a script. A script contains a number of dialogues and each dialogue is split into a number of sentences. When the agent starts reading a sentence the event \textit{AgentSpeech} is triggered with a pointer value of 1. When the agent finishes reading that sentence AgentSpeech is triggered with a pointer value of 0.
+As mentioned in \ref{sec:Agent} it was mentioned that Scenemaker contains a script. A script contains a number of dialogues and each dialogue is split into a number of sentences. When the agent starts reading a sentence the event \textit{AgentSpeech} is triggered with a pointer value of 1. When the agent finishes reading that sentence AgentSpeech is triggered with a pointer value of 0.
 
 %%##########################################################
 \chapter{Main Modules}
@@ -288,7 +296,7 @@ Directed Gaze occurs when the agent points or looks at a certain object and then
 
 \section{Backchanneling}
 \label{sec:Backchanneling}
-Backchanneling is the small responses given by the subject during the time where the agent is speaking. These responses indicate that the subject is following what the agent is saying. [CHECK HOW THE RICH PAPER DESCRIBES IT]
+Backchanneling is the small responses given by the subject during the time where the agent is speaking. These responses indicate that the subject is following what the agent is saying.
 
 Here we introduce the concept of a \textit{Backchanneling Pulse}. Since backchanneling has a very short duration that usually lasts only one event cycle which is not enough time to influence the bayesian network. So instead when a backchanneling event is provoked it is outputed on 5 consecutive event cycles with pointer value 1, 0.75, 0.5, 0.25 and 0 respectively, as shown in figure \ref{fig:bcp_img}.
 
@@ -324,12 +332,50 @@ AdjacencyPair end events are triggered when the vad event associated with the Ad
 %%##########################################################
 \chapter{Bayesian Network}
 \label{chap:BayesianNetwork}
-[ASK TOBY ABOUT HOW MUCH YOU CAN WRITE ABOUT THE BAYESIAN NETWORK. MINIMALLY JUST TALK ABOUT HOW THE ENGAGEMENT IS CALCULATED FEL AER]
+The final stage in our pipeline is to input our four main modules as factors to calculate the engagement. This is done using a bayesian network. The bayesian network was out of this thesis work's scope. Yet it is essential for this thesis to mention and explain how the bayesian network operates as it is the bridge between the work done in this thesis and the calculation of the final engagement value.
+
+A Bayesian network is a statistical model that is represented using a directed graph. Each node in the graph represents a variable. Each directed edge from node A to node B represents a relation between the two variables. It denotes that the value of A directly affects the value of B. Moreover when an a change occures to node B (a change independent of node A) the bayesian networks adjusts the value of node A according to the relationship defined between A and B. So a directed edge indicates both a direct and indirect relation between two nodes.
+
+Each node has an associated probability table. Each entry in the table contains the probability of the value of its associated node given the values of its input nodes. If node B has no other directed edges pointing to it then it would have 2 entries in its probability table indicating the value of B when A is present and when A is unpresent.
+
+Figure \ref{fig:BN_start_state_img} shows the start state of the bayesian network used in our software. The starting values of the probability are set intuitively but non of them are used since all of the leaves in this bayesian network's tree are connected to external softwares which provide the real time values. This thesis is mainly concerned with the relationship between the nodes of the four main states (nodes MutualFacialGaze, DirectedGaze, Backchanneling, and AdjacencyPair) and the Enagegement node.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{BN_start_state}
+    \caption{Bayesian network start state}
+    \label{fig:BN_start_state_img}
+\end{figure}
+
+As mentioned before each node has an associated probability table. Figure \ref{fig:BN_probability_table} shows the probability table of node Backchanneling. The node has two input directed edges coming from the nodes Participation and Context. The set probability of Backchanneling when participation is present and the context is welcome is 0.51. The probability of Backchanneling when participation is not present and context is companyintro (company introduction phase) is 0.01, and so on and so forth.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{BN_probability_table}
+    \caption{Probability table of Backchanneling node}
+    \label{fig:BN_probability_table}
+\end{figure}
+
+To set the values for the nodes our software communicates the output events to the bayesian network. As mentioned before each event carries an associated value from 0 to 1. These values are used to set evidance for the values in the nodes. For example if a mutual facial gaze occurs a MutualFacialGaze event is prompted with a pointer value of 1. The bayesian network then sets the evidance for the node MutualFacialGaze as Present = 100\%, notPresent = 0\%.
+
+Figure \ref{fig:BN_state} dipicts an example of the state of the bayesian network at a given intance. In this case the MutualFacialGaze and AdjacencyPair is present while the DirectedGaze and Backchanneling are not. This indicates a situation where the subject is facing the Agent and for example answering its question. By only setting these two variables the bayesian network back propagated throught the Participation node to the Engagement node, calculating an engagement probability of xxx\%. This is of course very intuitive since a subject facing and replying to an agent is clearly engaged in conversation.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{BN_state}
+    \caption{Instance of bayesian network}
+    \label{fig:BN_state}
+\end{figure}
+
 
 %%##########################################################
 \chapter{Summary}
 \label{Summary}
-[EXPLAIN THE GENERAL STRUCTURE AGAIN IN MORE DETAIL THIS TIME. ADD IMAGE SHOWING YOUR SO CALLED BOTTOM UP APPROACH]
+To reach the thesis's aim of detecting the engagement of an interviewee in an interview situation we have devised a setup which consists of a hardware and software component.
+
+The hardware component refers to the setup of the expariment. The interviewee is seated across two virtual agents present on a screen. Attached to the top of the screen a Microsoft Kinekt which mainly aims to track the movement of the subject's head. On the bottom of the screen lies an SMI Eyetracker used to track the subject's gaze and feed gazepoint co-ordinates to our software. And finally a microphone that is used to record the subject's speech utterences.
+
+The pipeline of our software is topological. It starts with raw input data and ends with a value for engagement.
 %******************************************************************************
 % BIBLIOGRAPHY
 %******************************************************************************

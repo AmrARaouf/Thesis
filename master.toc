@@ -8,24 +8,25 @@
 \contentsline {chapter}{\chapternumberline {2}Theoretical Background}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Previous Work}{3}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Recognizing Engagement in Human Robot Interaction}{3}{subsection.2.1.1}
-\contentsline {section}{\numberline {2.2}Setup}{4}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Subject}{4}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Agent}{4}{subsection.2.2.2}
-\contentsline {chapter}{\chapternumberline {3}Events}{7}{chapter.3}
-\contentsline {section}{\numberline {3.1}Event Structure}{7}{section.3.1}
-\contentsline {section}{\numberline {3.2}Sensors}{8}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Microsoft Kinect}{8}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}SMI Eyetracker}{8}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Microphone}{9}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Scenemaker}{9}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Gaze}{9}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Speech}{10}{subsection.3.3.2}
-\contentsline {chapter}{\chapternumberline {4}Main Modules}{11}{chapter.4}
-\contentsline {section}{\numberline {4.1}Mutual Facial Gaze}{11}{section.4.1}
-\contentsline {section}{\numberline {4.2}Directed Gaze}{12}{section.4.2}
-\contentsline {section}{\numberline {4.3}Backchanneling}{12}{section.4.3}
-\contentsline {section}{\numberline {4.4}Adjacency Pair}{13}{section.4.4}
-\contentsline {chapter}{\chapternumberline {5}Bayesian Network}{15}{chapter.5}
-\contentsline {chapter}{\chapternumberline {6}Summary}{17}{chapter.6}
-\contentsline {chapter}{Bibliography}{19}{section*.7}
-\contentsline {chapter}{List of Figures}{21}{section*.8}
+\contentsline {subsection}{\numberline {2.1.2}Engagement Rules for Human-Robot Collaborative Interactions}{4}{subsection.2.1.2}
+\contentsline {chapter}{\chapternumberline {3}Setup}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Subject}{5}{section.3.1}
+\contentsline {section}{\numberline {3.2}Agent}{5}{section.3.2}
+\contentsline {chapter}{\chapternumberline {4}Events}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}Event Structure}{7}{section.4.1}
+\contentsline {section}{\numberline {4.2}Sensors}{8}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Microsoft Kinect}{8}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}SMI Eyetracker}{8}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Microphone}{9}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Scenemaker}{9}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Gaze}{9}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Speech}{10}{subsection.4.3.2}
+\contentsline {chapter}{\chapternumberline {5}Main Modules}{11}{chapter.5}
+\contentsline {section}{\numberline {5.1}Mutual Facial Gaze}{11}{section.5.1}
+\contentsline {section}{\numberline {5.2}Directed Gaze}{12}{section.5.2}
+\contentsline {section}{\numberline {5.3}Backchanneling}{12}{section.5.3}
+\contentsline {section}{\numberline {5.4}Adjacency Pair}{13}{section.5.4}
+\contentsline {chapter}{\chapternumberline {6}Bayesian Network}{15}{chapter.6}
+\contentsline {chapter}{\chapternumberline {7}Summary}{19}{chapter.7}
+\contentsline {chapter}{Bibliography}{21}{section*.7}
+\contentsline {chapter}{List of Figures}{23}{section*.8}
